@@ -8,11 +8,16 @@ const port = process.env.PORT ?? 3001;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/auth', router.authRouter);
-
-app.get('/', (req, res) => {
-  res.send('Hello World!!');
-});
+/**
+ * @openapi
+ * /:
+ *   get:
+ *     description: Welcome to swagger-jsdoc!
+ *     responses:
+ *       200:
+ *         description: Returns a mysterious string.
+ */
+app.use('/', router);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
